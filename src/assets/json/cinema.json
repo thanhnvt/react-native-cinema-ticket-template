@@ -1,0 +1,68 @@
+[
+    {
+      "_id": "1",
+      "name": "Cinema 1",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "2",
+      "name": "Cinema 2",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "3",
+      "name": "Cinema 3",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "4",
+      "name": "Cinema 4",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "5",
+      "name": "Cinema 5",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "6",
+      "name": "Cinema 6",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "7",
+      "name": "Cinema 7",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "8",
+      "name": "Cinema 8",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "9",
+      "name": "Cinema 9",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "10",
+      "name": "Cinema 10",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    },
+    {
+      "_id": "11",
+      "name": "Cinema 11",
+      "image": "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
+      "address": "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC"
+    }
+  ]

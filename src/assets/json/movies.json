@@ -1,0 +1,101 @@
+[
+  {
+    "_id": "1",
+    "name": "Black Adam",
+    "image": "https://i.bbcosplay.com/15715/black-adam1.jpg",
+    "star": "7.8",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "125 Min",
+    "description": "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods--and imprisoned just as quickly--Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.",
+    "price": "6$"
+  },
+  {
+    "_id": "2",
+    "name": "Fast X",
+    "image": "https://image.tmdb.org/t/p/original/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h5m",
+    "description": "Dom Toretto and his family are targeted by the vengeful son of drug kingpin Hernan Reyes.",
+    "price": "8$"
+  },
+  {
+    "_id": "3",
+    "name": "Avengers: Endgame",
+    "image": "https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h55m",
+    "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    "price": "10$"
+  },
+  {
+    "_id": "4",
+    "name": "Avatar: The Way of Water",
+    "image": "https://lumiere-a.akamaihd.net/v1/images/p_20cs_avatarwayofwater_mayupdate_1710_260aa445.jpeg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h20m",
+    "description": "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
+    "price": "10$"
+  },
+  {
+    "_id": "5",
+    "name": "Aquaman and the Lost Kingdom",
+    "image": "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/r/s/rsz_vn_aqamn2_vert_tsr_2764x4096_intl_1.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h25m",
+    "description": "Black Manta seeks revenge on Aquaman for his father's death. Wielding the Black Trident's power, he becomes a formidable foe. To defend Atlantis, Aquaman forges an alliance with his imprisoned brother. They must protect the kingdom.",
+    "price": "10$"
+  },
+  {
+    "_id": "6",
+    "name": "Spider-Man: No Way Home",
+    "image": "https://www.elleman.vn/app/uploads/2021/12/20/208672/review-phim-spider-man-no-way-home-elle-man-9.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h25m",
+    "description": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.",
+    "price": "10$"
+  },
+  {
+    "_id": "7",
+    "name": "Ice Age",
+    "image": "https://photo.znews.vn/w660/Uploaded/xbhunku/2016_07_08/anh_1.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h25m",
+    "description": "Manny the mammoth, Sid the loquacious sloth, and Diego the sabre-toothed tiger go on a comical quest to return a human baby back to his father, across a world on the brink of an ice age.",
+    "price": "10$"
+  },
+  {
+    "_id": "8",
+    "name": "Space Sweepers",
+    "image": "https://image.tmdb.org/t/p/original/9h07EPtnJ96uTnGGJ9MQ4xsqTkE.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h25m",
+    "description": "Set in the year 2092 and follows the crew of a space junk collector ship called The Victory. When they discover a humanoid robot named Dorothy that's known to be a weapon of mass destruction, they get involved in a risky business deal.",
+    "price": "10$"
+  },
+  {
+    "_id": "9",
+    "name": "The Batman",
+    "image": "https://image.tmdb.org/t/p/original/9h07EPtnJ96uTnGGJ9MQ4xsqTkE.jpg",
+    "star": "9.2",
+    "startTime": "04/10/2024",
+    "endTime": "04/12/2024",
+    "duration": "2h25m",
+    "description": "When a sadistic serial killer begins murdering key political figures in Gotham, The Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+    "price": "10$"
+  }
+]
