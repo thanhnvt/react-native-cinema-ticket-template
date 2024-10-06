@@ -6,19 +6,30 @@ import {
   StyleSheet,
   Pressable,
   Image,
+  FlatList,
 } from "react-native";
 import Dates from "../../assets/json/date.json";
 import { DAYS } from "../../constants/DateConstants";
 import { fontSize, space } from "../../theme/size";
 import { colors } from "../../theme/colors";
 import api from "../../services";
-import { CinemaType } from "../../types/CinemaTypes";
+import { CinemaType, TimeSlotType } from "../../types/CinemaTypes";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/NavigationType";
+import ScreenKey from "../../constants/ScreenKey";
 
-const TicketBookingCinemaScreen = () => {
+const TicketBookingCinemaScreen = ({
+  navigation,
+  route,
+}: NativeStackScreenProps<
+  RootStackParamList,
+  ScreenKey.TICKETS_BOOKING_CINEMA_SCREEN
+>) => {
   const [dateSelected, setDateSelected] = React.useState(Dates[0].date);
   const [cinemas, setCinemas] = React.useState<Array<CinemaType>>();
+  const [cinemaSelected, setCinemaSelected] = React.useState<CinemaType>();
 
-  const movieId = "123";
+  const movieId = route?.params?.movie?._id;
 
   useEffect(() => {
     if (dateSelected) {
@@ -29,17 +40,17 @@ const TicketBookingCinemaScreen = () => {
   const getMovieShow = async (date: string, movieId: string) => {
     const data = await api.cinema.getMovieShow(date, movieId);
     if (data && data.length) {
+      setCinemaSelected(data[0]);
       setCinemas(data);
     }
   };
 
   const onSelectDate = ({ date }: { date: string }) => {
     setDateSelected(date);
-    //Load new cinemas by date & movieId
   };
 
-  return (
-    <ScrollView style={styles.container}>
+  const renderHeader = () => {
+    return (
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -78,42 +89,97 @@ const TicketBookingCinemaScreen = () => {
           );
         })}
       </ScrollView>
-      <View style={styles.cinemaContainer}>
-        {cinemas?.length &&
-          cinemas.map((cm) => {
-            return (
-              <View key={cm._id} style={styles.cinemaItemContainer}>
-                <Image
-                  source={{
-                    uri: cm.image,
-                  }}
-                  style={styles.imgCinema}
-                />
-                <Text style={styles.txtCinema}>{cm.name}</Text>
-              </View>
-            );
-          })}
-      </View>
+    );
+  };
+
+  const renderItem = ({ item }: { item: CinemaType }) => {
+    const onSelectCinema = () => {
+      setCinemaSelected(item);
+    };
+    const onTimeSlotPress = (timeSlot: TimeSlotType) => {
+      navigation.navigate(ScreenKey.TICKETS_BOOKING_SEAT_SCREEN, {
+        movie: route?.params?.movie,
+        cinema: cinemaSelected,
+        showTime: timeSlot,
+      });
+    };
+    return (
+      <Pressable style={styles.cinemaItemContainer} onPress={onSelectCinema}>
+        <Image
+          source={{
+            uri: item.image,
+          }}
+          style={styles.imgCinema}
+        />
+        <View style={styles.cinemaInfoContainer}>
+          <Text style={styles.txtCinema}>{item.name}</Text>
+          <Text style={styles.txtAddress} numberOfLines={2}>
+            {item.address}
+          </Text>
+          <View style={styles.timeSlotContainer}>
+            {cinemaSelected?._id === item._id &&
+              item?.timeSlots?.map((timeSlot: TimeSlotType) => {
+                return (
+                  <Pressable
+                    style={styles.timeSlotItemContainer}
+                    key={timeSlot._id}
+                    onPress={() => onTimeSlotPress(timeSlot)}
+                  >
+                    <Text>{timeSlot.value}</Text>
+                  </Pressable>
+                );
+              })}
+          </View>
+        </View>
+      </Pressable>
+    );
+  };
+
+  return (
+    <ScrollView style={styles.container}>
+      <FlatList
+        data={cinemas ?? []}
+        ListHeaderComponent={renderHeader}
+        keyExtractor={(item) => item._id}
+        renderItem={renderItem}
+      />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  timeSlotContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: space.xs,
+  },
+  timeSlotItemContainer: {
+    padding: space.xs,
+    borderWidth: 1,
+    borderColor: colors.orange,
+    borderRadius: space.xs,
+  },
+  cinemaInfoContainer: {
+    flexDirection: "column",
+    gap: space.xs,
+    flex: 1,
+  },
   txtCinema: {
-    color: "white",
     fontSize: fontSize.md,
     fontWeight: "700",
-    textAlign: "center",
+  },
+  txtAddress: {
+    fontSize: fontSize.sm,
+    fontWeight: "500",
+    flex: 1,
   },
   imgCinema: {
     aspectRatio: 1 / 1,
-    width: "auto",
+    width: space.md * 3,
   },
   cinemaItemContainer: {
-    backgroundColor: colors.primary,
     padding: space.xs,
-    borderRadius: space["2xs"],
-    flexDirection: "column",
+    flexDirection: "row",
     gap: space.xs,
   },
   cinemaContainer: {

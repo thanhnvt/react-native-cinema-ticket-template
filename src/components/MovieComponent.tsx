@@ -16,13 +16,15 @@ type MovieComponentProps = {
   movie: MovieType;
   scrollX: SharedValue<number>;
   index: number;
+  onBooking: () => void;
 };
 
-const MovieComponent: React.FC<MovieComponentProps> = ({
+const MovieComponent = ({
   movie,
   scrollX,
   index,
-}) => {
+  onBooking,
+}: MovieComponentProps) => {
   const viewAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -75,7 +77,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
           <Text style={styles.txtInfo}>{movie?.star}</Text>
         </View>
         <View>
-          <AppButton text={"Booking"} onPress={() => {}} />
+          <AppButton text={"Booking"} onPress={onBooking} />
         </View>
       </View>
     </Animated.View>

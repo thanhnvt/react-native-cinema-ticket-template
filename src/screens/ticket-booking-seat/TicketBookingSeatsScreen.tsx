@@ -9,51 +9,54 @@ import {
 } from "react-native";
 import { space } from "../../theme/size";
 import { colors } from "../../theme/colors";
-import { ChairType, CinemaChairsType } from "../../types/CinemaTypes";
+import { SeatType, CinemaSeatsType } from "../../types/CinemaTypes";
 import api from "../../services";
 import AppButton from "../../components/AppButton";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/NavigationType";
+import ScreenKey from "../../constants/ScreenKey";
 
-type ChairProps = {
-  chair: ChairType;
+type SeatProps = {
+  seat: SeatType;
 };
 
-const ChairItem: React.FC<ChairProps> = ({ chair }) => {
+const SeatItem = ({ seat }: SeatProps) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const backgroundColor = useMemo(() => {
-    if (chair?.isBooked) {
+    if (seat?.isBooked) {
       return "gray";
     }
     if (isSelected) {
       return colors.orange;
     }
     return "green";
-  }, [chair?.isBooked, isSelected]);
+  }, [seat?.isBooked, isSelected]);
   const onSelect = () => {
     setIsSelected(!isSelected);
   };
   return (
     <Pressable
-      style={[styles.chairItemContainer, { backgroundColor: backgroundColor }]}
-      disabled={chair?.isBooked}
+      style={[styles.seatItemContainer, { backgroundColor: backgroundColor }]}
+      disabled={seat?.isBooked}
       onPress={onSelect}
     >
-      <Text>{chair?.name}</Text>
+      <Text>{seat?.name}</Text>
     </Pressable>
   );
 };
 
-type ChairGroupProps = {
-  chairs: ChairType[][];
+type SeatGroupProps = {
+  seats: SeatType[][];
 };
 
-const ChairGroup: React.FC<ChairGroupProps> = ({ chairs }) => {
+const SeatGroup = ({ seats }: SeatGroupProps) => {
   return (
-    <View style={styles.chairColumContainer}>
-      {chairs.map((chairRow, index) => {
+    <View style={styles.seatColumContainer}>
+      {seats.map((seatRow, index) => {
         return (
-          <View style={styles.chairRowContainer} key={`chair-row-${index}`}>
-            {chairRow.map((chair) => {
-              return <ChairItem chair={chair} key={chair?.name} />;
+          <View style={styles.seatRowContainer} key={`seat-row-${index}`}>
+            {seatRow.map((seat) => {
+              return <SeatItem seat={seat} key={seat?.name} />;
             })}
           </View>
         );
@@ -62,15 +65,21 @@ const ChairGroup: React.FC<ChairGroupProps> = ({ chairs }) => {
   );
 };
 
-const TicketBookingChairScreen = () => {
-  const [chair, setChair] = useState<CinemaChairsType>();
+const TicketBookingSeatsScreen = ({
+  route,
+}: NativeStackScreenProps<
+  RootStackParamList,
+  ScreenKey.TICKETS_BOOKING_SEAT_SCREEN
+>) => {
+  const [seat, setSeat] = useState<CinemaSeatsType>();
+  const { showTime, movie, cinema } = route?.params;
   useEffect(() => {
-    getChairs();
+    getSeats();
   }, []);
-  const getChairs = async () => {
-    const data = await api.cinema.getChairsByMovieShowId("12");
+  const getSeats = async () => {
+    const data = await api.cinema.getSeatsByMovieShowId(showTime._id);
     if (data?.single?.length || data?.couple?.length) {
-      setChair(data);
+      setSeat(data);
     }
   };
 
@@ -81,7 +90,7 @@ const TicketBookingChairScreen = () => {
         showsHorizontalScrollIndicator={false}
         style={styles.scrollView}
       >
-        <View style={styles.chairContainer}>
+        <View style={styles.seatContainer}>
           <View style={styles.screenContainer}>
             <View style={styles.screen} />
             <Text>Screen</Text>
@@ -104,13 +113,13 @@ const TicketBookingChairScreen = () => {
               </View>
             </View>
           </View>
-          <View style={styles.chairTopContainer}>
-            {chair?.single?.length &&
-              chair?.single.map((chairs: any, index: number) => (
-                <ChairGroup chairs={chairs} key={`chair-single-${index}`} />
+          <View style={styles.seatTopContainer}>
+            {seat?.single?.length &&
+              seat?.single.map((seats: any, index: number) => (
+                <SeatGroup seats={seats} key={`seat-single-${index}`} />
               ))}
           </View>
-          {chair?.couple?.length && <ChairGroup chairs={chair?.couple} />}
+          {seat?.couple?.length && <SeatGroup seats={seat?.couple} />}
         </View>
       </ScrollView>
       <AppButton text={"Continue"} onPress={() => {}} />
@@ -141,20 +150,20 @@ const styles = StyleSheet.create({
     padding: space.md,
     flex: 1,
   },
-  chairContainer: {
+  seatContainer: {
     flexDirection: "column",
     alignItems: "center",
     gap: space.md * 2,
   },
-  chairTopContainer: {
+  seatTopContainer: {
     flexDirection: "row",
     gap: space.md * 3,
   },
-  chairRowContainer: {
+  seatRowContainer: {
     flexDirection: "row",
     gap: space.md,
   },
-  chairItemContainer: {
+  seatItemContainer: {
     // backgroundColor: colors.orange,
     backgroundColor: "gray",
     width: space.md * 3,
@@ -163,7 +172,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  chairColumContainer: {
+  seatColumContainer: {
     flexDirection: "column",
     gap: space.md,
   },
@@ -182,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TicketBookingChairScreen;
+export default TicketBookingSeatsScreen;

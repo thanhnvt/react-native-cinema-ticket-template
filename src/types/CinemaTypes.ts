@@ -3,15 +3,21 @@ export type CinemaType = {
   name: string;
   image: string;
   address: string;
+  timeSlots: TimeSlotType[];
 };
 
-export type ChairType = {
+export type TimeSlotType = {
+  _id: string;
+  value: string;
+};
+
+export type SeatType = {
   name: string;
   price: string;
   isBooked: boolean;
 };
 
-export type CinemaChairsType = {
+export type CinemaSeatsType = {
   single: any;
   couple: any;
 };

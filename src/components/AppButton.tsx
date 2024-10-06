@@ -8,7 +8,7 @@ type AppButtonProps = {
   onPress: () => void;
 };
 
-const AppButton: React.FC<AppButtonProps> = ({ text, onPress }) => {
+const AppButton = ({ text, onPress }: AppButtonProps) => {
   return (
     <TouchableOpacity style={styles.btnContainer} onPress={onPress}>
       <Text style={styles.txtBtn}>{text}</Text>

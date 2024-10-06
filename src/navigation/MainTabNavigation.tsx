@@ -1,32 +1,29 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React from "react";
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MoviesScreen from '../screens/movies/MoviesScreen';
-import TicketsBookedScreen from '../screens/ticket-booked/TicketsBookedScreen';
-import FavoriteMoviesScreen from '../screens/favorites/FavoriteMoviesScreen';
-import ScreenKey from '../constants/ScreenKey';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import TicketBookingScreen from '../screens/ticket-booking-cinema/TicketBookingCinemaScreen';
-import TicketBookingChairScreen from '../screens/ticket-booking-chair/TicketBookingChairScreen';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MoviesScreen from "../screens/movies/MoviesScreen";
+import TicketsBookedScreen from "../screens/ticket-booked/TicketsBookedScreen";
+import FavoriteMoviesScreen from "../screens/favorites/FavoriteMoviesScreen";
+import ScreenKey from "../constants/ScreenKey";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={
-        {
-          // headerShown: false,
-        }
-      }>
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tab.Screen
         name={ScreenKey.MOVIES_SCREEN}
-        component={TicketBookingChairScreen}
+        component={MoviesScreen}
         options={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: 'red',
-          tabBarIcon: ({color, size, focused}) => (
+          tabBarActiveTintColor: "red",
+          tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="movie"
               color={color}
@@ -40,8 +37,8 @@ const MainTabNavigator = () => {
         component={FavoriteMoviesScreen}
         options={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: 'red',
-          tabBarIcon: ({color, size, focused}) => (
+          tabBarActiveTintColor: "red",
+          tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="star-box"
               color={color}
@@ -55,8 +52,8 @@ const MainTabNavigator = () => {
         component={TicketsBookedScreen}
         options={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: 'red',
-          tabBarIcon: ({color, size, focused}) => (
+          tabBarActiveTintColor: "red",
+          tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="ticket"
               color={color}

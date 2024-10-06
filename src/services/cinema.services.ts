@@ -1,7 +1,7 @@
 import Cinemas from "../assets/json/cinema.json";
-import Chairs from "../assets/json/chairs.json";
+import Seats from "../assets/json/seats.json";
 
-import { ChairType, CinemaChairsType, CinemaType } from "../types/CinemaTypes";
+import { CinemaSeatsType, CinemaType } from "../types/CinemaTypes";
 
 class CinemaService {
   getMovieShow = async (
@@ -13,10 +13,10 @@ class CinemaService {
   ): Promise<Array<CinemaType>> => {
     return Cinemas;
   };
-  getChairsByMovieShowId = async (
+  getSeatsByMovieShowId = async (
     showTimeId: string
-  ): Promise<CinemaChairsType> => {
-    return Chairs;
+  ): Promise<CinemaSeatsType> => {
+    return Seats;
   };
 }
 
