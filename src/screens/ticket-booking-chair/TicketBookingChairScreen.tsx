@@ -1,19 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { space } from "../../theme/size";
 import { colors } from "../../theme/colors";
 import { ChairType, CinemaChairsType } from "../../types/CinemaTypes";
 import api from "../../services";
+import AppButton from "../../components/AppButton";
 
 type ChairProps = {
   chair: ChairType;
 };
 
 const ChairItem: React.FC<ChairProps> = ({ chair }) => {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const backgroundColor = useMemo(() => {
+    if (chair?.isBooked) {
+      return "gray";
+    }
+    if (isSelected) {
+      return colors.orange;
+    }
+    return "green";
+  }, [chair?.isBooked, isSelected]);
+  const onSelect = () => {
+    setIsSelected(!isSelected);
+  };
   return (
-    <View style={styles.chairItemContainer}>
+    <Pressable
+      style={[styles.chairItemContainer, { backgroundColor: backgroundColor }]}
+      disabled={chair?.isBooked}
+      onPress={onSelect}
+    >
       <Text>{chair?.name}</Text>
-    </View>
+    </Pressable>
   );
 };
 
@@ -51,11 +76,33 @@ const TicketBookingChairScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={styles.scrollView}
+      >
         <View style={styles.chairContainer}>
           <View style={styles.screenContainer}>
             <View style={styles.screen} />
             <Text>Screen</Text>
+            <View style={styles.noteContainer}>
+              <View style={styles.noteItemContainer}>
+                <View style={[styles.noteColor, { backgroundColor: "gray" }]} />
+                <Text>Has been booked</Text>
+              </View>
+              <View style={styles.noteItemContainer}>
+                <View
+                  style={[styles.noteColor, { backgroundColor: "green" }]}
+                />
+                <Text>Available</Text>
+              </View>
+              <View style={styles.noteItemContainer}>
+                <View
+                  style={[styles.noteColor, { backgroundColor: colors.orange }]}
+                />
+                <Text>Selected</Text>
+              </View>
+            </View>
           </View>
           <View style={styles.chairTopContainer}>
             {chair?.single?.length &&
@@ -66,13 +113,33 @@ const TicketBookingChairScreen = () => {
           {chair?.couple?.length && <ChairGroup chairs={chair?.couple} />}
         </View>
       </ScrollView>
+      <AppButton text={"Continue"} onPress={() => {}} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+  },
+  noteColor: {
+    width: space.md * 2,
+    height: space.md,
+    borderRadius: 4,
+  },
+  noteItemContainer: {
+    flexDirection: "row",
+    gap: space.sm,
+    alignContent: "center",
+    justifyContent: "center",
+  },
+  noteContainer: {
+    flexDirection: "row",
+    gap: space.xs,
+  },
   container: {
     padding: space.md,
+    flex: 1,
   },
   chairContainer: {
     flexDirection: "column",

@@ -8,6 +8,7 @@ export type CinemaType = {
 export type ChairType = {
   name: string;
   price: string;
+  isBooked: boolean;
 };
 
 export type CinemaChairsType = {

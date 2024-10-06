@@ -1,21 +1,16 @@
-import React from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {MovieType} from '../types/MovieTypes';
-import {fontSize, screenSize, space} from '../theme/size';
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { MovieType } from "../types/MovieTypes";
+import { fontSize, screenSize, space } from "../theme/size";
 import Animated, {
   Extrapolation,
   interpolate,
   SharedValue,
   useAnimatedStyle,
-} from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../theme/colors';
+} from "react-native-reanimated";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { colors } from "../theme/colors";
+import AppButton from "./AppButton";
 
 type MovieComponentProps = {
   movie: MovieType;
@@ -40,7 +35,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
               (index + 1) * screenSize.width,
             ],
             [-screenSize.width * 0.25, 0, screenSize.width * 0.25],
-            Extrapolation.CLAMP,
+            Extrapolation.CLAMP
           ),
         },
         {
@@ -52,7 +47,7 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
               (index + 1) * screenSize.width,
             ],
             [0.9, 1, 0.9],
-            Extrapolation.CLAMP,
+            Extrapolation.CLAMP
           ),
         },
       ],
@@ -71,18 +66,16 @@ const MovieComponent: React.FC<MovieComponentProps> = ({
           <Text style={styles.txtMovieName} numberOfLines={2}>
             {movie?.name}
           </Text>
-          <Icon name="heart" size={space.xl} color={'white'} />
+          <Icon name="heart" size={space.xl} color={"white"} />
         </View>
         <View style={styles.infoMovieContainer}>
-          <Icon name="clock" size={space.md} color={'white'} />
+          <Icon name="clock" size={space.md} color={"white"} />
           <Text style={styles.txtInfo}>{movie?.duration}</Text>
           <Icon name="star" size={space.md} color={colors.orange} />
           <Text style={styles.txtInfo}>{movie?.star}</Text>
         </View>
         <View>
-          <TouchableOpacity style={styles.btnBooking}>
-            <Text style={styles.txtBooking}>Booking</Text>
-          </TouchableOpacity>
+          <AppButton text={"Booking"} onPress={() => {}} />
         </View>
       </View>
     </Animated.View>
@@ -95,12 +88,12 @@ const styles = StyleSheet.create({
     right: space.md,
     borderWidth: 1,
     borderRadius: 100,
-    padding: space['4xs'],
+    padding: space["4xs"],
   },
   txtBooking: {
-    color: '#fff',
+    color: "#fff",
     fontSize: fontSize.md,
-    fontWeight: '700',
+    fontWeight: "700",
     paddingHorizontal: space.md * 6,
     padding: space.md,
   },
@@ -110,30 +103,30 @@ const styles = StyleSheet.create({
     marginVertical: space.sm,
   },
   infoMovieContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: space.xs,
   },
   txtMovieName: {
-    fontSize: fontSize['2xl'],
-    fontWeight: '700',
-    color: '#fff',
+    fontSize: fontSize["2xl"],
+    fontWeight: "700",
+    color: "#fff",
     maxWidth: screenSize.width / 2 + space.md * 6,
-    textAlign: 'center',
+    textAlign: "center",
   },
   contentContainer: {
     backgroundColor: colors.primary,
     borderRadius: space.md,
-    padding: space['3xs'],
-    alignItems: 'center',
+    padding: space["3xs"],
+    alignItems: "center",
     gap: space.xs,
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   itemContainer: {
     width: screenSize.width,
-    alignItems: 'center',
+    alignItems: "center",
     gap: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   imgPoster: {
     width: screenSize.width / 2 + space.md * 6,
@@ -142,9 +135,9 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 10,
   },
   txtInfo: {
-    color: '#fff',
+    color: "#fff",
     fontSize: fontSize.sm,
-    fontWeight: '500',
+    fontWeight: "500",
   },
 });
 

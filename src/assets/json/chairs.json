@@ -2,87 +2,87 @@
   "single": [
     [
       [
-        { "name": "A1", "price": "5", "status":"" },
-        { "name": "A2", "price": "5" },
-        { "name": "A3", "price": "5" },
-        { "name": "A4", "price": "5" },
-        { "name": "A5", "price": "5" }
+        { "name": "A1", "price": "5", "isBooked": true },
+        { "name": "A2", "price": "5", "isBooked": false },
+        { "name": "A3", "price": "5", "isBooked": false },
+        { "name": "A4", "price": "5", "isBooked": true },
+        { "name": "A5", "price": "5", "isBooked": true }
       ],
       [
-        { "name": "A6", "price": "5" },
-        { "name": "A7", "price": "5" },
-        { "name": "A8", "price": "5" },
-        { "name": "A9", "price": "5" },
-        { "name": "A10", "price": "5" }
+        { "name": "A6", "price": "5", "isBooked": false },
+        { "name": "A7", "price": "5", "isBooked": false },
+        { "name": "A8", "price": "5", "isBooked": false },
+        { "name": "A9", "price": "5", "isBooked": false },
+        { "name": "A10", "price": "5", "isBooked": false }
       ],
       [
-        { "name": "A11", "price": "5" },
-        { "name": "A12", "price": "5" },
-        { "name": "A13", "price": "5" },
-        { "name": "A14", "price": "5" },
-        { "name": "A15", "price": "5" }
+        { "name": "A11", "price": "5", "isBooked": true },
+        { "name": "A12", "price": "5", "isBooked": false },
+        { "name": "A13", "price": "5", "isBooked": false },
+        { "name": "A14", "price": "5", "isBooked": false },
+        { "name": "A15", "price": "5", "isBooked": false }
       ],
       [
-        { "name": "A16", "price": "5" },
-        { "name": "A17", "price": "5" },
-        { "name": "A18", "price": "5" },
-        { "name": "A19", "price": "5" },
-        { "name": "A20", "price": "5" }
+        { "name": "A16", "price": "5", "isBooked": true },
+        { "name": "A17", "price": "5", "isBooked": true },
+        { "name": "A18", "price": "5", "isBooked": false },
+        { "name": "A19", "price": "5", "isBooked": false },
+        { "name": "A20", "price": "5", "isBooked": false }
       ]
     ],
     [
       [
-        { "name": "B1", "price": "5" },
-        { "name": "B2", "price": "5" },
-        { "name": "B3", "price": "5" },
-        { "name": "B4", "price": "5" },
-        { "name": "B5", "price": "5" }
+        { "name": "B1", "price": "5", "isBooked": false },
+        { "name": "B2", "price": "5", "isBooked": false },
+        { "name": "B3", "price": "5", "isBooked": true },
+        { "name": "B4", "price": "5", "isBooked": false },
+        { "name": "B5", "price": "5", "isBooked": false }
       ],
       [
-        { "name": "B6", "price": "5" },
-        { "name": "B7", "price": "5" },
-        { "name": "B8", "price": "5" },
-        { "name": "B9", "price": "5" },
-        { "name": "B10", "price": "5" }
+        { "name": "B6", "price": "5", "isBooked": true },
+        { "name": "B7", "price": "5", "isBooked": true },
+        { "name": "B8", "price": "5", "isBooked": true },
+        { "name": "B9", "price": "5", "isBooked": false },
+        { "name": "B10", "price": "5", "isBooked": true }
       ],
       [
-        { "name": "B11", "price": "5" },
-        { "name": "B12", "price": "5" },
-        { "name": "B13", "price": "5" },
-        { "name": "B14", "price": "5" },
-        { "name": "B15", "price": "5" }
+        { "name": "B11", "price": "5", "isBooked": false },
+        { "name": "B12", "price": "5", "isBooked": false },
+        { "name": "B13", "price": "5", "isBooked": true },
+        { "name": "B14", "price": "5", "isBooked": true },
+        { "name": "B15", "price": "5", "isBooked": true }
       ],
       [
-        { "name": "B16", "price": "5" },
-        { "name": "B17", "price": "5" },
-        { "name": "B18", "price": "5" },
-        { "name": "B19", "price": "5" },
-        { "name": "B20", "price": "5" }
+        { "name": "B16", "price": "5", "isBooked": false },
+        { "name": "B17", "price": "5", "isBooked": false },
+        { "name": "B18", "price": "5", "isBooked": false },
+        { "name": "B19", "price": "5", "isBooked": false },
+        { "name": "B20", "price": "5", "isBooked": false }
       ]
     ]
   ],
   "couple": [
     [
-      { "name": "C1", "price": "8" },
-      { "name": "C2", "price": "8" },
-      { "name": "C3", "price": "8" },
-      { "name": "C4", "price": "8" },
-      { "name": "C5", "price": "8" },
-      { "name": "C6", "price": "8" },
-      { "name": "C7", "price": "8" },
-      { "name": "C8", "price": "8" },
-      { "name": "C9", "price": "8" }
+      { "name": "C1", "price": "8", "isBooked": false },
+      { "name": "C2", "price": "8", "isBooked": false },
+      { "name": "C3", "price": "8", "isBooked": false },
+      { "name": "C4", "price": "8", "isBooked": false },
+      { "name": "C5", "price": "8", "isBooked": false },
+      { "name": "C6", "price": "8", "isBooked": false },
+      { "name": "C7", "price": "8", "isBooked": false },
+      { "name": "C8", "price": "8", "isBooked": false },
+      { "name": "C9", "price": "8", "isBooked": false }
     ],
     [
-      { "name": "C10", "price": "8" },
-      { "name": "C11", "price": "8" },
-      { "name": "C12", "price": "8" },
-      { "name": "C13", "price": "8" },
-      { "name": "C14", "price": "8" },
-      { "name": "C15", "price": "8" },
-      { "name": "C16", "price": "8" },
-      { "name": "C17", "price": "8" },
-      { "name": "C18", "price": "8" }
+      { "name": "C10", "price": "8", "isBooked": true },
+      { "name": "C11", "price": "8", "isBooked": true },
+      { "name": "C12", "price": "8", "isBooked": true },
+      { "name": "C13", "price": "8", "isBooked": false },
+      { "name": "C14", "price": "8", "isBooked": true },
+      { "name": "C15", "price": "8", "isBooked": true },
+      { "name": "C16", "price": "8", "isBooked": false },
+      { "name": "C17", "price": "8", "isBooked": true },
+      { "name": "C18", "price": "8", "isBooked": true }
     ]
   ]
 }
