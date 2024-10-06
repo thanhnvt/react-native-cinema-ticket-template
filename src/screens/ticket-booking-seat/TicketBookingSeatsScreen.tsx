@@ -18,9 +18,10 @@ import ScreenKey from "../../constants/ScreenKey";
 
 type SeatProps = {
   seat: SeatType;
+  onSelectSeat: (seat: SeatType, isSelected: boolean) => void;
 };
 
-const SeatItem = ({ seat }: SeatProps) => {
+const SeatItem = ({ seat, onSelectSeat }: SeatProps) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const backgroundColor = useMemo(() => {
     if (seat?.isBooked) {
@@ -32,6 +33,7 @@ const SeatItem = ({ seat }: SeatProps) => {
     return "green";
   }, [seat?.isBooked, isSelected]);
   const onSelect = () => {
+    onSelectSeat(seat, !isSelected);
     setIsSelected(!isSelected);
   };
   return (
@@ -47,16 +49,23 @@ const SeatItem = ({ seat }: SeatProps) => {
 
 type SeatGroupProps = {
   seats: SeatType[][];
+  onSelectSeat: (seat: SeatType, isSelected: boolean) => void;
 };
 
-const SeatGroup = ({ seats }: SeatGroupProps) => {
+const SeatGroup = ({ seats, onSelectSeat }: SeatGroupProps) => {
   return (
     <View style={styles.seatColumContainer}>
       {seats.map((seatRow, index) => {
         return (
           <View style={styles.seatRowContainer} key={`seat-row-${index}`}>
             {seatRow.map((seat) => {
-              return <SeatItem seat={seat} key={seat?.name} />;
+              return (
+                <SeatItem
+                  seat={seat}
+                  key={seat?.name}
+                  onSelectSeat={onSelectSeat}
+                />
+              );
             })}
           </View>
         );
@@ -72,14 +81,25 @@ const TicketBookingSeatsScreen = ({
   ScreenKey.TICKETS_BOOKING_SEAT_SCREEN
 >) => {
   const [seat, setSeat] = useState<CinemaSeatsType>();
+  const [selectedSeats, setSelectedSeats] = useState<SeatType[]>([]);
+
   const { showTime, movie, cinema } = route?.params;
   useEffect(() => {
     getSeats();
   }, []);
+
   const getSeats = async () => {
     const data = await api.cinema.getSeatsByMovieShowId(showTime._id);
     if (data?.single?.length || data?.couple?.length) {
       setSeat(data);
+    }
+  };
+
+  const onSelectSeat = (seat: SeatType, isSelected: boolean) => {
+    if (isSelected) {
+      setSelectedSeats([...selectedSeats, seat]);
+    } else {
+      setSelectedSeats(selectedSeats.filter((s) => s?.name !== seat?.name));
     }
   };
 
@@ -116,10 +136,16 @@ const TicketBookingSeatsScreen = ({
           <View style={styles.seatTopContainer}>
             {seat?.single?.length &&
               seat?.single.map((seats: any, index: number) => (
-                <SeatGroup seats={seats} key={`seat-single-${index}`} />
+                <SeatGroup
+                  seats={seats}
+                  key={`seat-single-${index}`}
+                  onSelectSeat={onSelectSeat}
+                />
               ))}
           </View>
-          {seat?.couple?.length && <SeatGroup seats={seat?.couple} />}
+          {seat?.couple?.length && (
+            <SeatGroup seats={seat?.couple} onSelectSeat={onSelectSeat} />
+          )}
         </View>
       </ScrollView>
       <AppButton text={"Continue"} onPress={() => {}} />
