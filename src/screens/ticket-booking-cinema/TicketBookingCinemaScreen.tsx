@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -6,36 +6,34 @@ import {
   StyleSheet,
   Pressable,
   Image,
-} from 'react-native';
-import Dates from '../../assets/json/date.json';
-import {DAYS} from '../../constants/DateConstants';
-import {fontSize, space} from '../../theme/size';
-import {colors} from '../../theme/colors';
-import api from '../../services';
-import {CinemaType} from '../../types/CinemaTypes';
+} from "react-native";
+import Dates from "../../assets/json/date.json";
+import { DAYS } from "../../constants/DateConstants";
+import { fontSize, space } from "../../theme/size";
+import { colors } from "../../theme/colors";
+import api from "../../services";
+import { CinemaType } from "../../types/CinemaTypes";
 
 const TicketBookingCinemaScreen = () => {
   const [dateSelected, setDateSelected] = React.useState(Dates[0].date);
   const [cinemas, setCinemas] = React.useState<Array<CinemaType>>();
 
-  const movieId = '123';
+  const movieId = "123";
 
   useEffect(() => {
     if (dateSelected) {
-      getCinemasByDateAndMovieId(dateSelected, movieId);
+      getMovieShow(dateSelected, movieId);
     }
   }, [dateSelected]);
 
-  const getCinemasByDateAndMovieId = async (date: string, movieId: string) => {
-    const data = await api.cinema.getCinemaByMovieIdAndDate(date, movieId);
-    console.log('data', data);
-
+  const getMovieShow = async (date: string, movieId: string) => {
+    const data = await api.cinema.getMovieShow(date, movieId);
     if (data && data.length) {
       setCinemas(data);
     }
   };
 
-  const onSelectDate = ({date}: {date: string}) => {
+  const onSelectDate = ({ date }: { date: string }) => {
     setDateSelected(date);
     //Load new cinemas by date & movieId
   };
@@ -45,8 +43,9 @@ const TicketBookingCinemaScreen = () => {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.dateViewContainer}>
-        {Dates.map(date => {
+        style={styles.dateViewContainer}
+      >
+        {Dates.map((date) => {
           return (
             <Pressable
               key={date.date}
@@ -54,22 +53,25 @@ const TicketBookingCinemaScreen = () => {
                 styles.dateContainer,
                 {
                   backgroundColor:
-                    dateSelected === date.date ? colors.orange : 'white',
+                    dateSelected === date.date ? colors.orange : "white",
                 },
               ]}
-              onPress={() => onSelectDate(date)}>
+              onPress={() => onSelectDate(date)}
+            >
               <Text
                 style={[
                   styles.txtDateIndex,
-                  {color: dateSelected === date.date ? 'white' : 'black'},
-                ]}>
+                  { color: dateSelected === date.date ? "white" : "black" },
+                ]}
+              >
                 {DAYS[date.dayIndex]}
               </Text>
               <Text
                 style={[
                   styles.txtDate,
-                  {color: dateSelected === date.date ? 'white' : 'black'},
-                ]}>
+                  { color: dateSelected === date.date ? "white" : "black" },
+                ]}
+              >
                 {date.date}
               </Text>
             </Pressable>
@@ -78,7 +80,7 @@ const TicketBookingCinemaScreen = () => {
       </ScrollView>
       <View style={styles.cinemaContainer}>
         {cinemas?.length &&
-          cinemas.map(cm => {
+          cinemas.map((cm) => {
             return (
               <View key={cm._id} style={styles.cinemaItemContainer}>
                 <Image
@@ -98,53 +100,53 @@ const TicketBookingCinemaScreen = () => {
 
 const styles = StyleSheet.create({
   txtCinema: {
-    color: 'white',
+    color: "white",
     fontSize: fontSize.md,
-    fontWeight: '700',
-    textAlign: 'center',
+    fontWeight: "700",
+    textAlign: "center",
   },
   imgCinema: {
     aspectRatio: 1 / 1,
-    width: 'auto',
+    width: "auto",
   },
   cinemaItemContainer: {
     backgroundColor: colors.primary,
     padding: space.xs,
-    borderRadius: space['2xs'],
-    flexDirection:'column',
+    borderRadius: space["2xs"],
+    flexDirection: "column",
     gap: space.xs,
   },
   cinemaContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     gap: space.md,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   dateViewContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: space.xs,
     padding: space.xs,
-    paddingHorizontal: space['2xs'],
+    paddingHorizontal: space["2xs"],
   },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   dateContainer: {
-    flexDirection: 'column',
+    flexDirection: "column",
     gap: space.sm,
     padding: space.xs,
-    paddingHorizontal: space['2xs'],
-    alignItems: 'center',
+    paddingHorizontal: space["2xs"],
+    alignItems: "center",
     borderRadius: space.sm,
   },
   txtDate: {
     fontSize: fontSize.md,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   txtDateIndex: {
     fontSize: fontSize.sm,
-    fontWeight: '400',
+    fontWeight: "400",
   },
 });
 
