@@ -136,14 +136,14 @@ const TicketBookingCinemaScreen = ({
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={cinemas ?? []}
         ListHeaderComponent={renderHeader}
         keyExtractor={(item) => item._id}
         renderItem={renderItem}
       />
-    </ScrollView>
+    </View>
   );
 };
 

@@ -103,6 +103,10 @@ const TicketBookingSeatsScreen = ({
     }
   };
 
+  const onPayment = () => {
+    console.log("onPayment");
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -148,12 +152,29 @@ const TicketBookingSeatsScreen = ({
           )}
         </View>
       </ScrollView>
-      <AppButton text={"Continue"} onPress={() => {}} />
+      <AppButton
+        text={"Continue"}
+        onPress={onPayment}
+        disabled={selectedSeats.length === 0}
+        style={
+          selectedSeats.length === 0 ? styles.btnDisable : styles.btnEnable
+        }
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  btnDisable: {
+    backgroundColor: "gray",
+    borderRadius: space.sm,
+    marginVertical: space.sm,
+  },
+  btnEnable: {
+    backgroundColor: colors.orange,
+    borderRadius: space.sm,
+    marginVertical: space.sm,
+  },
   scrollView: {
     flex: 1,
   },

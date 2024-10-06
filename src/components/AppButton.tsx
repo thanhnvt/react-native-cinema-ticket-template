@@ -1,18 +1,26 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { fontSize, space } from "../theme/size";
 import { colors } from "../theme/colors";
 
-type AppButtonProps = {
+interface AppButtonProps extends PressableProps {
   text: string;
   onPress: () => void;
-};
+}
 
-const AppButton = ({ text, onPress }: AppButtonProps) => {
+const AppButton = (props: AppButtonProps) => {
+  const { text, onPress } = props;
+
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={onPress}>
+    <Pressable style={styles.btnContainer} {...props} onPress={onPress}>
       <Text style={styles.txtBtn}>{text}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
