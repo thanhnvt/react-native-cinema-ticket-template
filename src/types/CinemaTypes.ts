@@ -1,3 +1,5 @@
+import { MovieType } from "./MovieTypes";
+
 export type CinemaType = {
   _id: string;
   name: string;
@@ -20,4 +22,11 @@ export type SeatType = {
 export type CinemaSeatsType = {
   single: any;
   couple: any;
+};
+
+export type CinemaPaymentRequestType = {
+  movie: MovieType;
+  cinema?: CinemaType;
+  showTime: TimeSlotType;
+  seats: SeatType[];
 };

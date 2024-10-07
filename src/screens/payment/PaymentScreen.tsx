@@ -1,8 +1,13 @@
 import React, { useMemo } from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, Alert } from "react-native";
 import { SeatType } from "../../types/CinemaTypes";
 import { space } from "../../theme/size";
 import { IconImages } from "../../assets/images";
+import AppButton from "../../components/AppButton";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/NavigationType";
+import ScreenKey from "../../constants/ScreenKey";
+import { usePayment } from "../../hooks/usePayment";
 
 const data = {
   movie: {
@@ -67,8 +72,12 @@ const TextRow = ({
   );
 };
 
-const PaymentScreen = () => {
-  const { movie, cinema, showTime, seats } = data;
+const PaymentScreen = ({
+  navigation,
+  route,
+}: NativeStackScreenProps<RootStackParamList, ScreenKey.PAYMENT_SCREEN>) => {
+  const { movie, cinema, showTime, seats } = route.params;
+  const { onPayment } = usePayment();
   const total = useMemo(() => {
     const total = seats.reduce((total, seat) => {
       return total + Number.parseInt(seat.price);
@@ -76,51 +85,73 @@ const PaymentScreen = () => {
     return total;
   }, [seats]);
 
+  const onRequestPayment = () => {
+    Alert.alert("Payment", "Confirm payment", [
+      {
+        text: "OK",
+        onPress: () => {
+          onPayment(route.params);
+        },
+      },
+      {
+        text: "Cancel",
+        onPress: () => {
+          console.log("OK");
+        },
+      },
+    ]);
+  };
+
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.personalInfoContainer}>
-        <View style={styles.movieContainer}>
-          <Image source={{ uri: movie.image }} style={styles.imgMovie} />
-          <View style={styles.movieInfoContainer}>
-            <Text>{movie.name}</Text>
-            <Text>{movie.duration}</Text>
-            <Text>{showTime.value}</Text>
-            <Text>{cinema.name}</Text>
-            <Text>{cinema.address}</Text>
+    <View style={styles.flex}>
+      <ScrollView style={styles.container}>
+        <View style={styles.personalInfoContainer}>
+          <View style={styles.movieContainer}>
+            <Image source={{ uri: movie.image }} style={styles.imgMovie} />
+            <View style={styles.movieInfoContainer}>
+              <Text>{movie.name}</Text>
+              <Text>{movie.duration}</Text>
+              <Text>{showTime.value}</Text>
+              <Text>{cinema?.name}</Text>
+              <Text>{cinema?.address}</Text>
+            </View>
           </View>
-        </View>
-        <View style={styles.columContainer}>
-          <Text style={styles.txtUserInfo}>User info</Text>
-          <TextRow textLeft="Full name" textRight={user.name} />
-          <TextRow textLeft="Email" textRight={user.email} />
-          <TextRow textLeft="Phone number" textRight={user.phone} />
-          <TextRow textLeft="Address" textRight={user.address} />
-        </View>
-        <View style={styles.columContainer}>
-          <Text style={styles.txtUserInfo}>Seats</Text>
-          {seats.map((seat) => {
-            return (
-              <TextRow
-                key={seat.name}
-                textLeft={seat.name}
-                textRight={`${seat.price}$`}
+          <View style={styles.columContainer}>
+            <Text style={styles.txtUserInfo}>User info</Text>
+            <TextRow textLeft="Full name" textRight={user.name} />
+            <TextRow textLeft="Email" textRight={user.email} />
+            <TextRow textLeft="Phone number" textRight={user.phone} />
+            <TextRow textLeft="Address" textRight={user.address} />
+          </View>
+          <View style={styles.columContainer}>
+            <Text style={styles.txtUserInfo}>Seats</Text>
+            {seats.map((seat) => {
+              return (
+                <TextRow
+                  key={seat.name}
+                  textLeft={seat.name}
+                  textRight={`${seat.price}$`}
+                />
+              );
+            })}
+            <TextRow textLeft="Total: " textRight={total + "$"} />
+          </View>
+          <View style={styles.columContainer}>
+            <Text style={styles.txtUserInfo}>Payment method</Text>
+            <View style={styles.rowCenter}>
+              <Image
+                source={IconImages.ico_payment_visa}
+                style={styles.imgVisa}
               />
-            );
-          })}
-          <TextRow textLeft="Total: " textRight={total + "$"} />
-        </View>
-        <View style={styles.columContainer}>
-          <Text style={styles.txtUserInfo}>Payment method</Text>
-          <View style={styles.rowCenter}>
-            <Image
-              source={IconImages.ico_payment_visa}
-              style={styles.imgVisa}
-            />
-            <Text>Visa/Mastercard</Text>
+              <Text>Visa/Mastercard</Text>
+            </View>
           </View>
         </View>
+      </ScrollView>
+      <View style={styles.btnContainer}>
+        <AppButton text={"Pay"} onPress={onRequestPayment} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -175,6 +206,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: space.sm,
+  },
+  flex: {
+    flex: 1,
+  },
+  btnContainer: {
+    padding: space.md,
   },
 });
 

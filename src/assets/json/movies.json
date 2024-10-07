@@ -8,7 +8,8 @@
     "endTime": "04/12/2024",
     "duration": "125 Min",
     "description": "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods--and imprisoned just as quickly--Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.",
-    "price": "6$"
+    "price": "6$",
+    "isFavorite": false
   },
   {
     "_id": "2",
@@ -19,7 +20,8 @@
     "endTime": "04/12/2024",
     "duration": "2h5m",
     "description": "Dom Toretto and his family are targeted by the vengeful son of drug kingpin Hernan Reyes.",
-    "price": "8$"
+    "price": "8$",
+    "isFavorite": false
   },
   {
     "_id": "3",
@@ -30,7 +32,8 @@
     "endTime": "04/12/2024",
     "duration": "2h55m",
     "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   },
   {
     "_id": "4",
@@ -41,7 +44,8 @@
     "endTime": "04/12/2024",
     "duration": "2h20m",
     "description": "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   },
   {
     "_id": "5",
@@ -52,7 +56,8 @@
     "endTime": "04/12/2024",
     "duration": "2h25m",
     "description": "Black Manta seeks revenge on Aquaman for his father's death. Wielding the Black Trident's power, he becomes a formidable foe. To defend Atlantis, Aquaman forges an alliance with his imprisoned brother. They must protect the kingdom.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   },
   {
     "_id": "6",
@@ -63,7 +68,8 @@
     "endTime": "04/12/2024",
     "duration": "2h25m",
     "description": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   },
   {
     "_id": "7",
@@ -74,7 +80,8 @@
     "endTime": "04/12/2024",
     "duration": "2h25m",
     "description": "Manny the mammoth, Sid the loquacious sloth, and Diego the sabre-toothed tiger go on a comical quest to return a human baby back to his father, across a world on the brink of an ice age.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   },
   {
     "_id": "8",
@@ -85,7 +92,8 @@
     "endTime": "04/12/2024",
     "duration": "2h25m",
     "description": "Set in the year 2092 and follows the crew of a space junk collector ship called The Victory. When they discover a humanoid robot named Dorothy that's known to be a weapon of mass destruction, they get involved in a risky business deal.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   },
   {
     "_id": "9",
@@ -96,6 +104,7 @@
     "endTime": "04/12/2024",
     "duration": "2h25m",
     "description": "When a sadistic serial killer begins murdering key political figures in Gotham, The Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
-    "price": "10$"
+    "price": "10$",
+    "isFavorite": false
   }
 ]

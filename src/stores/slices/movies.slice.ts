@@ -1,19 +1,74 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {MovieType} from '../../types/MovieTypes';
-import movies from '../../assets/json/movies.json';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { MovieType } from "../../types/MovieTypes";
+import movies from "../../assets/json/movies.json";
 
 export interface MovieStates {
   movies: Array<MovieType>;
+  favoriteMovies: Array<MovieType>;
 }
 
 const defaultState: MovieStates = {
   movies: movies,
+  favoriteMovies: [],
 };
 
 const movieSlice = createSlice({
-  name: 'movies',
+  name: "movies",
   initialState: defaultState,
-  reducers: {},
+  reducers: {
+    setMovies: (
+      state: MovieStates,
+      action: PayloadAction<any>
+    ): MovieStates => {
+      state = {
+        ...state,
+        ...action.payload,
+      };
+      return state;
+    },
+    setFavoriteMovies: (
+      state: MovieStates,
+      action: PayloadAction<any>
+    ): MovieStates => {
+      state = {
+        ...state,
+        ...action.payload,
+      };
+      return state;
+    },
+    onFavorites: (
+      state: MovieStates,
+      action: PayloadAction<any>
+    ): MovieStates => {
+      const { movie } = action.payload;
+      state = {
+        ...state,
+        movies: state.movies.map((m) => {
+          if (m._id !== movie._id) return m;
+          return movie;
+        }),
+        favoriteMovies: state.favoriteMovies.map((m) => {
+          if (m._id !== movie._id) return m;
+          return movie;
+        }),
+      };
+      return state;
+    },
+    paymentTicketSuccess: (
+      state: MovieStates,
+      action: PayloadAction<any>
+    ): MovieStates => {
+      const { movieId } = action.payload;
+      state = {
+        ...state,
+        movies: state.movies.filter((movie) => movie._id !== movieId),
+        favoriteMovies: state.favoriteMovies.filter(
+          (movie) => movie._id !== movieId
+        ),
+      };
+      return state;
+    },
+  },
 });
 
 export const {} = movieSlice.actions;

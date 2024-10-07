@@ -1,7 +1,11 @@
 import Cinemas from "../assets/json/cinema.json";
 import Seats from "../assets/json/seats.json";
 
-import { CinemaSeatsType, CinemaType } from "../types/CinemaTypes";
+import {
+  CinemaPaymentRequestType,
+  CinemaSeatsType,
+  CinemaType,
+} from "../types/CinemaTypes";
 
 class CommonService {
   getMovieShow = async (
@@ -17,6 +21,12 @@ class CommonService {
     showTimeId: string
   ): Promise<CinemaSeatsType> => {
     return Seats;
+  };
+
+  onPayment = async (params: CinemaPaymentRequestType): Promise<any> => {
+    return {
+      status: 200,
+    };
   };
 }
 

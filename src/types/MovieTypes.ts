@@ -8,4 +8,5 @@ export type MovieType = {
   duration: string;
   description: string;
   price: string;
+  isFavorite: boolean
 };
