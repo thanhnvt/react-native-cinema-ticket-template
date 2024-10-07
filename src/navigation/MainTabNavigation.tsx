@@ -12,17 +12,14 @@ const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <Tab.Navigator>
       <Tab.Screen
         name={ScreenKey.MOVIES_SCREEN}
         component={MoviesScreen}
         options={{
           tabBarShowLabel: false,
           tabBarActiveTintColor: "red",
+          headerShown: false,
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="movie"

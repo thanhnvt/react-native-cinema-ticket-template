@@ -84,11 +84,6 @@ const MoviesScreen = ({
         onScroll={onScrollHandler}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
       />
-      {/* <Pagination
-        items={movies}
-        paginationIndex={paginationIndex}
-        scrollX={scrollX}
-      /> */}
     </ImageBackground>
   );
 };
