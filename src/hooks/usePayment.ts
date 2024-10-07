@@ -6,6 +6,7 @@ import { addTicketSuccess } from "../stores/slices/ticket.slice";
 import { Alert } from "react-native";
 import { resetScreen } from "../utils/navigationUtils";
 import ScreenKey from "../constants/ScreenKey";
+import { paymentTicketSuccess } from "../stores/slices/movies.slice";
 
 export const usePayment = () => {
   const dispath = useDispatch();
@@ -15,6 +16,7 @@ export const usePayment = () => {
       if (result?.status === 200) {
         Alert.alert("Payment", "Payment success");
         dispath(addTicketSuccess({ ticket: params }));
+        dispath(paymentTicketSuccess({ movieId: params?.movie?._id }));
         resetScreen(ScreenKey.MAIN_TAB);
         return;
       }

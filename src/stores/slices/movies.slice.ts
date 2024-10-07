@@ -59,17 +59,23 @@ const movieSlice = createSlice({
       action: PayloadAction<any>
     ): MovieStates => {
       const { movieId } = action.payload;
-      state = {
-        ...state,
-        movies: state.movies.filter((movie) => movie._id !== movieId),
-        favoriteMovies: state.favoriteMovies.filter(
+      const movies = state.movies.filter((movie) => movie._id !== movieId);
+      if (state.favoriteMovies.length > 0) {
+        const favoriteMovies = state.favoriteMovies.filter(
           (movie) => movie._id !== movieId
-        ),
-      };
-      return state;
+        );
+        state.favoriteMovies = favoriteMovies;
+      }
+      state.movies = movies
+      return state
     },
   },
 });
 
-export const {} = movieSlice.actions;
+export const {
+  paymentTicketSuccess,
+  onFavorites,
+  setFavoriteMovies,
+  setMovies,
+} = movieSlice.actions;
 export default movieSlice.reducer;

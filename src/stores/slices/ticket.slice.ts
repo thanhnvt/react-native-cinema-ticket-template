@@ -22,7 +22,6 @@ const ticketSlice = createSlice({
         ...state,
         tickets: [...state.tickets, ticket],
       };
-      console.log("JSON", JSON.stringify(state));
       return state;
     },
   },
