@@ -5,6 +5,7 @@ import MainTabNavigator from "./MainTabNavigation";
 import { RootStackParamList } from "../types/NavigationType";
 import TicketBookingCinemaScreen from "../screens/ticket-booking-cinema/TicketBookingCinemaScreen";
 import TicketBookingSeatsScreen from "../screens/ticket-booking-seat/TicketBookingSeatsScreen";
+import PaymentScreen from "../screens/payment/PaymentScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +27,7 @@ const MainStackNavigation = () => {
         name={ScreenKey.TICKETS_BOOKING_SEAT_SCREEN}
         component={TicketBookingSeatsScreen}
       />
+      <Stack.Screen name={ScreenKey.PAYMENT_SCREEN} component={PaymentScreen} />
     </Stack.Navigator>
   );
 };

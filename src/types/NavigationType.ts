@@ -1,5 +1,5 @@
 import ScreenKey from "../constants/ScreenKey";
-import { CinemaType, TimeSlotType } from "./CinemaTypes";
+import { CinemaType, SeatType, TimeSlotType } from "./CinemaTypes";
 import { MovieType } from "./MovieTypes";
 
 export type RootStackParamList = {
@@ -11,5 +11,11 @@ export type RootStackParamList = {
     movie: MovieType;
     cinema?: CinemaType;
     showTime: TimeSlotType;
+  };
+  [ScreenKey.PAYMENT_SCREEN]: {
+    movie: MovieType;
+    cinema?: CinemaType;
+    showTime: TimeSlotType;
+    seats: SeatType[];
   };
 };

@@ -76,6 +76,7 @@ const SeatGroup = ({ seats, onSelectSeat }: SeatGroupProps) => {
 
 const TicketBookingSeatsScreen = ({
   route,
+  navigation,
 }: NativeStackScreenProps<
   RootStackParamList,
   ScreenKey.TICKETS_BOOKING_SEAT_SCREEN
@@ -105,6 +106,22 @@ const TicketBookingSeatsScreen = ({
 
   const onPayment = () => {
     console.log("onPayment");
+    console.log(
+      "JSON",
+      JSON.stringify({
+        movie,
+        cinema,
+        showTime,
+        seats: selectedSeats,
+      })
+    );
+
+    navigation?.navigate(ScreenKey.PAYMENT_SCREEN, {
+      movie,
+      cinema,
+      showTime,
+      seats: selectedSeats,
+    });
   };
 
   return (

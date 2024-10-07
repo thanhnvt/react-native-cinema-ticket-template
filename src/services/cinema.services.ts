@@ -3,7 +3,7 @@ import Seats from "../assets/json/seats.json";
 
 import { CinemaSeatsType, CinemaType } from "../types/CinemaTypes";
 
-class CinemaService {
+class CommonService {
   getMovieShow = async (
     date: string,
     movieId: string,
@@ -20,4 +20,4 @@ class CinemaService {
   };
 }
 
-export default CinemaService;
+export default CommonService;
