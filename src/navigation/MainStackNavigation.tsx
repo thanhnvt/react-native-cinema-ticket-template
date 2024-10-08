@@ -6,6 +6,7 @@ import { RootStackParamList } from "../types/NavigationType";
 import TicketBookingCinemaScreen from "../screens/ticket-booking-cinema/TicketBookingCinemaScreen";
 import TicketBookingSeatsScreen from "../screens/ticket-booking-seat/TicketBookingSeatsScreen";
 import PaymentScreen from "../screens/payment/PaymentScreen";
+import TicketDetailScreen from "../screens/ticket-detail/TicketDetailScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -28,6 +29,10 @@ const MainStackNavigation = () => {
         component={TicketBookingSeatsScreen}
       />
       <Stack.Screen name={ScreenKey.PAYMENT_SCREEN} component={PaymentScreen} />
+      <Stack.Screen
+        name={ScreenKey.TICKET_DETAIL_SCREEN}
+        component={TicketDetailScreen}
+      />
     </Stack.Navigator>
   );
 };

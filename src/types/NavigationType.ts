@@ -18,4 +18,10 @@ export type RootStackParamList = {
     showTime: TimeSlotType;
     seats: SeatType[];
   };
+  [ScreenKey.TICKET_DETAIL_SCREEN]: {
+    movie: MovieType;
+    cinema?: CinemaType;
+    showTime: TimeSlotType;
+    seats: SeatType[];
+  };
 };

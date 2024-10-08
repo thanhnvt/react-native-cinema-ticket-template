@@ -1,18 +1,30 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  FlatList,
+  Pressable,
+} from "react-native";
 import { RootState } from "../../stores";
 import { useSelector } from "react-redux";
 import { CinemaPaymentRequestType } from "../../types/CinemaTypes";
 import { space } from "../../theme/size";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/NavigationType";
+import ScreenKey from "../../constants/ScreenKey";
 
 const TicketsBookedItem = ({
   ticket,
+  onPress,
 }: {
   ticket: CinemaPaymentRequestType;
+  onPress: () => void;
 }) => {
   const { movie, cinema, seats, showTime } = ticket;
   return (
-    <View style={styles.ticketContainer}>
+    <Pressable style={styles.ticketContainer} onPress={onPress}>
       <Image source={{ uri: movie.image }} style={styles.imgMovie} />
       <View style={styles.ticketInfoContainer}>
         <Text>{movie.name}</Text>
@@ -21,19 +33,21 @@ const TicketsBookedItem = ({
         <Text>{cinema?.address}</Text>
         <Text>{showTime?.value}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
-const TicketsBookedScreen = () => {
+const TicketsBookedScreen = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList>) => {
   const { tickets } = useSelector((state: RootState) => state.ticket);
 
-  useEffect(() => {
-    console.log("tickets", JSON.stringify(tickets));
-  }, [tickets]);
-
   const renderItem = ({ item }: { item: CinemaPaymentRequestType }) => {
-    return <TicketsBookedItem ticket={item} />;
+    const onPress = () => {
+      console.log("onPress", item);
+      navigation?.navigate(ScreenKey.TICKET_DETAIL_SCREEN, { ...item });
+    };
+    return <TicketsBookedItem ticket={item} onPress={onPress} />;
   };
 
   return (

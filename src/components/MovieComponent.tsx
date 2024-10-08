@@ -18,7 +18,7 @@ import Animated, {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { colors } from "../theme/colors";
 import AppButton from "./AppButton";
-import { useFavorite } from "../hooks/useFavotite";
+import { useFavorite } from "../hooks/useFavorite";
 
 type MovieComponentProps = {
   movie: MovieType;

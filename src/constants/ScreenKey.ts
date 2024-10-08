@@ -5,6 +5,7 @@ enum ScreenKey {
   TICKETS_BOOKING_CINEMA_SCREEN = "TicketsBookingCinemaScreen",
   TICKETS_BOOKING_SEAT_SCREEN = "TicketsBookingSeatsScreen",
   PAYMENT_SCREEN = "PaymentScreen",
+  TICKET_DETAIL_SCREEN = "TicketDetailScreen",
   MAIN_TAB = "MainTab",
 }
 

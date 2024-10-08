@@ -7,7 +7,7 @@ import { fontSize, screenSize, space } from "../../theme/size";
 import { MovieType } from "../../types/MovieTypes";
 import { colors } from "../../theme/colors";
 import { Pressable } from "react-native";
-import { useFavorite } from "../../hooks/useFavotite";
+import { useFavorite } from "../../hooks/useFavorite";
 
 const FavoriteItem = ({
   movie,
@@ -19,19 +19,20 @@ const FavoriteItem = ({
   const onFavoriteMovie = () => {
     onFavorite(movie);
   };
+
   return (
-    <View style={styles.ticketContainer}>
+    <View style={styles.movieContainer}>
       <Image source={{ uri: movie.image }} style={styles.imgMovie} />
-      <View style={styles.ticketInfoContainer}>
+      <View style={styles.movieInfoContainer}>
         <View style={styles.textNameContainer}>
-          <Text>{movie.name}</Text>
+          <Text style={styles.txtMovie}>{movie.name}</Text>
           <Pressable onPress={onFavoriteMovie}>
             <Icon name={"heart"} size={space.xl} color={colors.orange} />
           </Pressable>
         </View>
-        <Text>{movie?.description}</Text>
+        <Text numberOfLines={4}>{movie?.description}</Text>
         <View style={styles.infoMovieContainer}>
-          <Icon name="clock" size={space.md} color={"white"} />
+          <Icon name="clock" size={space.md} color={"gray"} />
           <Text style={styles.txtInfo}>{movie?.duration}</Text>
           <Icon name="star" size={space.md} color={colors.orange} />
           <Text style={styles.txtInfo}>{movie?.star}</Text>
@@ -48,9 +49,6 @@ const FavoriteMoviesScreen = () => {
   const onFavoriteMovie = async (movie: MovieType) => {
     await onFavorite({ ...movie, isFavorite: false });
   };
-  useEffect(() => {
-    console.log("tickets", JSON.stringify(favoriteMovies));
-  }, [favoriteMovies]);
 
   const renderItem = ({ item }: { item: MovieType }) => {
     return <FavoriteItem movie={item} onFavorite={onFavoriteMovie} />;
@@ -69,15 +67,20 @@ const FavoriteMoviesScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  txtMovie: {
+    fontWeight: "700",
+    fontSize: fontSize.lg,
+    width: screenSize.width * 0.5,
+  },
   textNameContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   contentContainerStyle: { gap: space.sm, padding: space.sm },
-  ticketInfoContainer: {
+  movieInfoContainer: {
     flexDirection: "column",
-    gap: space["3xs"],
+    gap: space.xs,
     flex: 1,
   },
   container: {
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
     width: 80,
     borderRadius: space.xs,
   },
-  ticketContainer: {
+  movieContainer: {
     backgroundColor: "white",
     flexDirection: "row",
     alignItems: "center",
@@ -121,7 +124,6 @@ const styles = StyleSheet.create({
     gap: space.xs,
   },
   txtInfo: {
-    color: "#fff",
     fontSize: fontSize.sm,
     fontWeight: "500",
   },
