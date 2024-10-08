@@ -8,22 +8,13 @@ import { RootStackParamList } from "../../types/NavigationType";
 import ScreenKey from "../../constants/ScreenKey";
 import { usePayment } from "../../hooks/usePayment";
 import TextRow from "../../components/TextRow";
-
-const user = {
-  _id: "1",
-  name: "Nguyen Thanh",
-  email: "nguyenthanh@gmail.com",
-  password: "123456",
-  phone: "0123456789",
-  address: "489 NVC, P3, GV, TPHCM",
-  avatar: "https://i.imgur.com/ylPJBm7.jpeg",
-  createdAt: "2021-01-01T00:00:00.000Z",
-  updatedAt: "2021-01-01T00:00:00.000Z",
-};
+import { useSelector } from "react-redux";
+import { RootState } from "../../stores";
 
 const PaymentScreen = ({
   route,
 }: NativeStackScreenProps<RootStackParamList, ScreenKey.PAYMENT_SCREEN>) => {
+  const { user } = useSelector((state: RootState) => state.auth);
   const { movie, cinema, showTime, seats } = route.params;
   const { onPayment } = usePayment();
   const total = useMemo(() => {

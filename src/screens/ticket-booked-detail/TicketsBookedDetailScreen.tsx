@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { RootState } from "../../stores";
 import { useSelector } from "react-redux";
@@ -27,10 +27,6 @@ const TicketsBookedItem = ({
 
 const TicketsBookedScreen = () => {
   const { tickets } = useSelector((state: RootState) => state.ticket);
-
-  useEffect(() => {
-    console.log("tickets", JSON.stringify(tickets));
-  }, [tickets]);
 
   const renderItem = ({ item }: { item: CinemaPaymentRequestType }) => {
     return <TicketsBookedItem ticket={item} />;

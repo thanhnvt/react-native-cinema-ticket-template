@@ -48,17 +48,6 @@ const TicketBookingSeatsScreen = ({
   };
 
   const onPayment = () => {
-    console.log("onPayment");
-    console.log(
-      "JSON",
-      JSON.stringify({
-        movie,
-        cinema,
-        showTime,
-        seats: selectedSeats,
-      })
-    );
-
     navigation?.navigate(ScreenKey.PAYMENT_SCREEN, {
       movie,
       cinema,

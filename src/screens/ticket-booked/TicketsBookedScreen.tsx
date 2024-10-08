@@ -44,7 +44,6 @@ const TicketsBookedScreen = ({
 
   const renderItem = ({ item }: { item: CinemaPaymentRequestType }) => {
     const onPress = () => {
-      console.log("onPress", item);
       navigation?.navigate(ScreenKey.TICKET_DETAIL_SCREEN, { ...item });
     };
     return <TicketsBookedItem ticket={item} onPress={onPress} />;

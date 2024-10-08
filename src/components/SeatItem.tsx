@@ -10,7 +10,6 @@ type SeatProps = {
 };
 
 const SeatItem = ({ seat, onSelectSeat }: SeatProps) => {
-  console.log("SeatItem", seat?.name);
 
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const backgroundColor = useMemo(() => {

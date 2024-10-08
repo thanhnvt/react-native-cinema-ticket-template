@@ -69,7 +69,6 @@ const MovieComponent = ({
       ],
     };
   });
-  console.log("render", movie.name);
 
   return (
     <Animated.View style={[styles.itemContainer, viewAnimatedStyle]}>

@@ -9,33 +9,9 @@ import { RootStackParamList } from "../../types/NavigationType";
 import ScreenKey from "../../constants/ScreenKey";
 import { usePayment } from "../../hooks/usePayment";
 import QRCode from "react-native-qrcode-svg";
-
-const user = {
-  _id: "1",
-  name: "Nguyen Thanh",
-  email: "nguyenthanh@gmail.com",
-  password: "123456",
-  phone: "0123456789",
-  address: "489 NVC, P3, GV, TPHCM",
-  avatar: "https://i.imgur.com/ylPJBm7.jpeg",
-  createdAt: "2021-01-01T00:00:00.000Z",
-  updatedAt: "2021-01-01T00:00:00.000Z",
-};
-
-const TextRow = ({
-  textLeft,
-  textRight,
-}: {
-  textLeft: string;
-  textRight: string;
-}) => {
-  return (
-    <View style={styles.textRowContainer}>
-      <Text style={styles.txtLeft}>{textLeft}</Text>
-      <Text style={styles.txtRight}>{textRight}</Text>
-    </View>
-  );
-};
+import TextRow from "../../components/TextRow";
+import { useSelector } from "react-redux";
+import { RootState } from "../../stores";
 
 const TicketDetailScreen = ({
   route,
@@ -44,6 +20,8 @@ const TicketDetailScreen = ({
   ScreenKey.TICKET_DETAIL_SCREEN
 >) => {
   const { movie, cinema, showTime, seats } = route.params;
+  const { user } = useSelector((state: RootState) => state.auth);
+
   const total = useMemo(() => {
     const total = seats.reduce((total, seat) => {
       return total + Number.parseInt(seat.price);
