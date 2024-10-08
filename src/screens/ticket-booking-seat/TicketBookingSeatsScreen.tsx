@@ -15,64 +15,7 @@ import AppButton from "../../components/AppButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/NavigationType";
 import ScreenKey from "../../constants/ScreenKey";
-
-type SeatProps = {
-  seat: SeatType;
-  onSelectSeat: (seat: SeatType, isSelected: boolean) => void;
-};
-
-const SeatItem = ({ seat, onSelectSeat }: SeatProps) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
-  const backgroundColor = useMemo(() => {
-    if (seat?.isBooked) {
-      return "gray";
-    }
-    if (isSelected) {
-      return colors.orange;
-    }
-    return "green";
-  }, [seat?.isBooked, isSelected]);
-  const onSelect = () => {
-    onSelectSeat(seat, !isSelected);
-    setIsSelected(!isSelected);
-  };
-  return (
-    <Pressable
-      style={[styles.seatItemContainer, { backgroundColor: backgroundColor }]}
-      disabled={seat?.isBooked}
-      onPress={onSelect}
-    >
-      <Text>{seat?.name}</Text>
-    </Pressable>
-  );
-};
-
-type SeatGroupProps = {
-  seats: SeatType[][];
-  onSelectSeat: (seat: SeatType, isSelected: boolean) => void;
-};
-
-const SeatGroup = ({ seats, onSelectSeat }: SeatGroupProps) => {
-  return (
-    <View style={styles.seatColumContainer}>
-      {seats.map((seatRow, index) => {
-        return (
-          <View style={styles.seatRowContainer} key={`seat-row-${index}`}>
-            {seatRow.map((seat) => {
-              return (
-                <SeatItem
-                  seat={seat}
-                  key={seat?.name}
-                  onSelectSeat={onSelectSeat}
-                />
-              );
-            })}
-          </View>
-        );
-      })}
-    </View>
-  );
-};
+import SeatGroup from "../../components/SeatGroup";
 
 const TicketBookingSeatsScreen = ({
   route,
@@ -222,23 +165,6 @@ const styles = StyleSheet.create({
   seatTopContainer: {
     flexDirection: "row",
     gap: space.md * 3,
-  },
-  seatRowContainer: {
-    flexDirection: "row",
-    gap: space.md,
-  },
-  seatItemContainer: {
-    // backgroundColor: colors.orange,
-    backgroundColor: "gray",
-    width: space.md * 3,
-    height: space.md * 2,
-    borderRadius: space.xs,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  seatColumContainer: {
-    flexDirection: "column",
-    gap: space.md,
   },
   screen: {
     height: 15,

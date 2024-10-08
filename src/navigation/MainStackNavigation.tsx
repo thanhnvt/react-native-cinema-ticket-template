@@ -20,19 +20,41 @@ const MainStackNavigation = () => {
       >
         <Stack.Screen name={ScreenKey.MAIN_TAB} component={MainTabNavigator} />
       </Stack.Group>
-      <Stack.Screen
-        name={ScreenKey.TICKETS_BOOKING_CINEMA_SCREEN}
-        component={TicketBookingCinemaScreen}
-      />
-      <Stack.Screen
-        name={ScreenKey.TICKETS_BOOKING_SEAT_SCREEN}
-        component={TicketBookingSeatsScreen}
-      />
-      <Stack.Screen name={ScreenKey.PAYMENT_SCREEN} component={PaymentScreen} />
-      <Stack.Screen
-        name={ScreenKey.TICKET_DETAIL_SCREEN}
-        component={TicketDetailScreen}
-      />
+      <Stack.Group
+        screenOptions={{
+          headerBackTitleVisible: false,
+          headerTintColor: "black",
+        }}
+      >
+        <Stack.Screen
+          options={{
+            headerTitle: "Cinema",
+          }}
+          name={ScreenKey.TICKETS_BOOKING_CINEMA_SCREEN}
+          component={TicketBookingCinemaScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: "Seats",
+          }}
+          name={ScreenKey.TICKETS_BOOKING_SEAT_SCREEN}
+          component={TicketBookingSeatsScreen}
+        />
+        <Stack.Screen
+          name={ScreenKey.PAYMENT_SCREEN}
+          component={PaymentScreen}
+          options={{
+            headerTitle: "Payment",
+          }}
+        />
+        <Stack.Screen
+          name={ScreenKey.TICKET_DETAIL_SCREEN}
+          component={TicketDetailScreen}
+          options={{
+            headerTitle: "Ticket detail",
+          }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };

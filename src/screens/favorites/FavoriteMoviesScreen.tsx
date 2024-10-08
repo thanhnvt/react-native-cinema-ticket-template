@@ -1,48 +1,20 @@
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import React from "react";
+import { View, StyleSheet, Image, FlatList } from "react-native";
 import { RootState } from "../../stores";
 import { useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { fontSize, screenSize, space } from "../../theme/size";
+import { fontSize, space } from "../../theme/size";
 import { MovieType } from "../../types/MovieTypes";
 import { colors } from "../../theme/colors";
-import { Pressable } from "react-native";
 import { useFavorite } from "../../hooks/useFavorite";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types/NavigationType";
+import ScreenKey from "../../constants/ScreenKey";
+import FavoriteItem from "../../components/FavoriteItem";
 
-const FavoriteItem = ({
-  movie,
-  onFavorite,
-}: {
-  movie: MovieType;
-  onFavorite: (movie: MovieType) => void;
-}) => {
-  const onFavoriteMovie = () => {
-    onFavorite(movie);
-  };
-
-  return (
-    <View style={styles.movieContainer}>
-      <Image source={{ uri: movie.image }} style={styles.imgMovie} />
-      <View style={styles.movieInfoContainer}>
-        <View style={styles.textNameContainer}>
-          <Text style={styles.txtMovie}>{movie.name}</Text>
-          <Pressable onPress={onFavoriteMovie}>
-            <Icon name={"heart"} size={space.xl} color={colors.orange} />
-          </Pressable>
-        </View>
-        <Text numberOfLines={4}>{movie?.description}</Text>
-        <View style={styles.infoMovieContainer}>
-          <Icon name="clock" size={space.md} color={"gray"} />
-          <Text style={styles.txtInfo}>{movie?.duration}</Text>
-          <Icon name="star" size={space.md} color={colors.orange} />
-          <Text style={styles.txtInfo}>{movie?.star}</Text>
-        </View>
-      </View>
-    </View>
-  );
-};
-
-const FavoriteMoviesScreen = () => {
+const FavoriteMoviesScreen = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList>) => {
   const { favoriteMovies } = useSelector((state: RootState) => state.movies);
   const { onFavorite } = useFavorite();
 
@@ -50,8 +22,20 @@ const FavoriteMoviesScreen = () => {
     await onFavorite({ ...movie, isFavorite: false });
   };
 
+  const onBooking = (movie: MovieType) => {
+    navigation.navigate(ScreenKey.TICKETS_BOOKING_CINEMA_SCREEN, {
+      movie: movie,
+    });
+  };
+
   const renderItem = ({ item }: { item: MovieType }) => {
-    return <FavoriteItem movie={item} onFavorite={onFavoriteMovie} />;
+    return (
+      <FavoriteItem
+        movie={item}
+        onFavorite={onFavoriteMovie}
+        onBooking={onBooking}
+      />
+    );
   };
 
   return (
@@ -67,37 +51,10 @@ const FavoriteMoviesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  txtMovie: {
-    fontWeight: "700",
-    fontSize: fontSize.lg,
-    width: screenSize.width * 0.5,
-  },
-  textNameContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   contentContainerStyle: { gap: space.sm, padding: space.sm },
-  movieInfoContainer: {
-    flexDirection: "column",
-    gap: space.xs,
-    flex: 1,
-  },
+
   container: {
     flex: 1,
-  },
-  imgMovie: {
-    aspectRatio: 580 / 936,
-    width: 80,
-    borderRadius: space.xs,
-  },
-  movieContainer: {
-    backgroundColor: "white",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: space.sm,
-    padding: space.xs,
-    borderRadius: space.xs,
   },
   favoriteContainer: {
     top: space.md,
@@ -117,15 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.orange,
     borderRadius: space.sm,
     marginVertical: space.sm,
-  },
-  infoMovieContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: space.xs,
-  },
-  txtInfo: {
-    fontSize: fontSize.sm,
-    fontWeight: "500",
   },
 });
 

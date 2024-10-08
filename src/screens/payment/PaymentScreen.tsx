@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Alert } from "react-native";
-import { SeatType } from "../../types/CinemaTypes";
 import { space } from "../../theme/size";
 import { IconImages } from "../../assets/images";
 import AppButton from "../../components/AppButton";
@@ -8,6 +7,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types/NavigationType";
 import ScreenKey from "../../constants/ScreenKey";
 import { usePayment } from "../../hooks/usePayment";
+import TextRow from "../../components/TextRow";
 
 const user = {
   _id: "1",
@@ -21,23 +21,7 @@ const user = {
   updatedAt: "2021-01-01T00:00:00.000Z",
 };
 
-const TextRow = ({
-  textLeft,
-  textRight,
-}: {
-  textLeft: string;
-  textRight: string;
-}) => {
-  return (
-    <View style={styles.textRowContainer}>
-      <Text style={styles.txtLeft}>{textLeft}</Text>
-      <Text style={styles.txtRight}>{textRight}</Text>
-    </View>
-  );
-};
-
 const PaymentScreen = ({
-  navigation,
   route,
 }: NativeStackScreenProps<RootStackParamList, ScreenKey.PAYMENT_SCREEN>) => {
   const { movie, cinema, showTime, seats } = route.params;
@@ -136,13 +120,6 @@ const styles = StyleSheet.create({
     borderRadius: space.xs,
     padding: space.xs,
     backgroundColor: "white",
-  },
-  txtLeft: {},
-  txtRight: {},
-  textRowContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
   txtUserInfo: {
     fontWeight: "700",

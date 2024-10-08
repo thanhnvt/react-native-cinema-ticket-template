@@ -35,6 +35,7 @@ const MainTabNavigator = () => {
         options={{
           tabBarShowLabel: false,
           tabBarActiveTintColor: "red",
+          headerTitle:"Favorite Movies",
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="star-box"
@@ -50,6 +51,7 @@ const MainTabNavigator = () => {
         options={{
           tabBarShowLabel: false,
           tabBarActiveTintColor: "red",
+          headerTitle:"Tickets Booked",
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons
               name="ticket"
