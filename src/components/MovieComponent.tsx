@@ -69,6 +69,8 @@ const MovieComponent = ({
       ],
     };
   });
+  console.log("render", movie.name);
+
   return (
     <Animated.View style={[styles.itemContainer, viewAnimatedStyle]}>
       <View style={styles.contentContainer}>
@@ -82,7 +84,10 @@ const MovieComponent = ({
           <Text style={styles.txtMovieName} numberOfLines={2}>
             {movie?.name}
           </Text>
-          <Pressable onPress={onFavoriteMovie}>
+          <Pressable
+            onPress={onFavoriteMovie}
+            style={styles.icoFavoriteContainer}
+          >
             <Icon
               name={"heart"}
               size={space.xl}
@@ -105,6 +110,9 @@ const MovieComponent = ({
 };
 
 const styles = StyleSheet.create({
+  icoFavoriteContainer: {
+    padding: space.xs,
+  },
   favoriteContainer: {
     top: space.md,
     right: space.md,
@@ -133,7 +141,7 @@ const styles = StyleSheet.create({
     fontSize: fontSize["2xl"],
     fontWeight: "700",
     color: "#fff",
-    maxWidth: screenSize.width / 2 + space.md * 6,
+    maxWidth: screenSize.width / 2 + space.md * 5,
     textAlign: "center",
   },
   contentContainer: {
@@ -163,4 +171,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieComponent;
+const propsAreEqual = (
+  prevProps: MovieComponentProps,
+  nextProps: MovieComponentProps
+) => {
+  return prevProps.movie.isFavorite === nextProps.movie.isFavorite;
+};
+
+export default React.memo(MovieComponent, propsAreEqual);

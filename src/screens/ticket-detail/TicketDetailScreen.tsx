@@ -55,7 +55,7 @@ const TicketDetailScreen = ({
     <View style={styles.flex}>
       <ScrollView style={styles.container}>
         <View style={styles.qrCodeContainer}>
-          <QRCode value="http://awesome.link.qr" size={space.md * 10} />
+          <QRCode value="http://awesome.link.qr" size={space.md * 15} />
         </View>
         <View style={styles.personalInfoContainer}>
           <View style={styles.movieContainer}>
@@ -107,7 +107,12 @@ const TicketDetailScreen = ({
 const styles = StyleSheet.create({
   qrCodeContainer: {
     alignItems: "center",
-    marginBottom: space.md,
+    marginBottom: space.sm,
+    flexDirection: "column",
+    gap: space.xs,
+    borderRadius: space.xs,
+    padding: space.xs,
+    backgroundColor: "white",
   },
 
   movieContainer: {

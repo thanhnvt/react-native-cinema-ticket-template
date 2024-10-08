@@ -8,7 +8,7 @@ export interface MovieStates {
 }
 
 const defaultState: MovieStates = {
-  movies: movies,
+  movies: [],
   favoriteMovies: [],
 };
 
