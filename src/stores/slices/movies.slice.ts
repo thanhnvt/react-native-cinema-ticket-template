@@ -41,17 +41,17 @@ const movieSlice = createSlice({
       action: PayloadAction<any>
     ): MovieStates => {
       const { movie } = action.payload;
-      state = {
-        ...state,
-        movies: state.movies.map((m) => {
-          if (m._id !== movie._id) return m;
-          return movie;
-        }),
-        favoriteMovies: state.favoriteMovies.map((m) => {
-          if (m._id !== movie._id) return m;
-          return movie;
-        }),
-      };
+      state.movies = state.movies.map((m) => {
+        if (m._id !== movie._id) return m;
+        return movie;
+      });
+      if (movie?.isFavorite) {
+        state.favoriteMovies = [...state.favoriteMovies, movie];
+      } else {
+        state.favoriteMovies = state.favoriteMovies.filter(
+          (m) => m._id !== movie._id
+        );
+      }
       return state;
     },
     paymentTicketSuccess: (
@@ -66,8 +66,8 @@ const movieSlice = createSlice({
         );
         state.favoriteMovies = favoriteMovies;
       }
-      state.movies = movies
-      return state
+      state.movies = movies;
+      return state;
     },
   },
 });

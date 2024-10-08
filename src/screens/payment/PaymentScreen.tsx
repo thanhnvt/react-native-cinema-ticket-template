@@ -9,42 +9,6 @@ import { RootStackParamList } from "../../types/NavigationType";
 import ScreenKey from "../../constants/ScreenKey";
 import { usePayment } from "../../hooks/usePayment";
 
-const data = {
-  movie: {
-    _id: "1",
-    name: "Black Adam",
-    image: "https://i.bbcosplay.com/15715/black-adam1.jpg",
-    star: "7.8",
-    startTime: "04/10/2024",
-    endTime: "04/12/2024",
-    duration: "125 Min",
-    description:
-      "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods--and imprisoned just as quickly--Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.",
-    price: "6$",
-  },
-  cinema: {
-    _id: "1",
-    name: "Cinema 1",
-    image: "https://roadstreet.vn/wp-content/uploads/2017/10/CGV-logo.png",
-    address: "469 Nguyen Huu Tho Street, Tan Hung Ward, District 7, HCMC",
-    timeSlots: [
-      { _id: "1", value: "9h00~11h00" },
-      { _id: "2", value: "11h00~13h00" },
-      { _id: "3", value: "13h00~15h00" },
-      { _id: "4", value: "15h00~17h00" },
-    ],
-  },
-  showTime: { _id: "4", value: "15h00~17h00" },
-  seats: [
-    { name: "A8", price: "5", isBooked: false },
-    { name: "A18", price: "5", isBooked: false },
-    { name: "A19", price: "5", isBooked: false },
-    { name: "A20", price: "5", isBooked: false },
-    { name: "A15", price: "5", isBooked: false },
-    { name: "A14", price: "5", isBooked: false },
-  ],
-};
-
 const user = {
   _id: "1",
   name: "Nguyen Thanh",

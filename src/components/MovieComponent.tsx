@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { MovieType } from "../types/MovieTypes";
 import { fontSize, screenSize, space } from "../theme/size";
 import Animated, {
@@ -11,6 +18,7 @@ import Animated, {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { colors } from "../theme/colors";
 import AppButton from "./AppButton";
+import { useFavorite } from "../hooks/useFavotite";
 
 type MovieComponentProps = {
   movie: MovieType;
@@ -25,6 +33,12 @@ const MovieComponent = ({
   index,
   onBooking,
 }: MovieComponentProps) => {
+  const { onFavorite } = useFavorite();
+
+  const onFavoriteMovie = () => {
+    onFavorite({ ...movie, isFavorite: !movie.isFavorite });
+  };
+
   const viewAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -68,7 +82,13 @@ const MovieComponent = ({
           <Text style={styles.txtMovieName} numberOfLines={2}>
             {movie?.name}
           </Text>
-          <Icon name="heart" size={space.xl} color={"white"} />
+          <Pressable onPress={onFavoriteMovie}>
+            <Icon
+              name={"heart"}
+              size={space.xl}
+              color={movie?.isFavorite ? colors.orange : "white"}
+            />
+          </Pressable>
         </View>
         <View style={styles.infoMovieContainer}>
           <Icon name="clock" size={space.md} color={"white"} />
