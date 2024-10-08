@@ -46,7 +46,6 @@ const FavoriteMoviesScreen = () => {
   const { onFavorite } = useFavorite();
 
   const onFavoriteMovie = async (movie: MovieType) => {
-    console.log("onFavoriteMovie");
     await onFavorite({ ...movie, isFavorite: false });
   };
   useEffect(() => {

@@ -36,7 +36,6 @@ const MovieComponent = ({
   const { onFavorite } = useFavorite();
 
   const onFavoriteMovie = async () => {
-    console.log("onFavoriteMovie");
     await onFavorite({ ...movie, isFavorite: !movie.isFavorite });
   };
 
