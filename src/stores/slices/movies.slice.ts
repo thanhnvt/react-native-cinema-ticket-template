@@ -52,6 +52,7 @@ const movieSlice = createSlice({
           (m) => m._id !== movie._id
         );
       }
+      console.log("favorite", state.favoriteMovies);
       return state;
     },
     paymentTicketSuccess: (

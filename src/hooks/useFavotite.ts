@@ -8,7 +8,7 @@ export const useFavorite = () => {
   const onFavorite = async (movie: MovieType) => {
     const result = await api.movie.onFavorite(movie);
     if (result?._id) {
-      dispatch(onFavorites(movie));
+      dispatch(onFavorites({ movie: movie }));
     }
   };
   return {

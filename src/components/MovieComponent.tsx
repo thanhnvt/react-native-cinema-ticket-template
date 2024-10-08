@@ -35,8 +35,9 @@ const MovieComponent = ({
 }: MovieComponentProps) => {
   const { onFavorite } = useFavorite();
 
-  const onFavoriteMovie = () => {
-    onFavorite({ ...movie, isFavorite: !movie.isFavorite });
+  const onFavoriteMovie = async () => {
+    console.log("onFavoriteMovie");
+    await onFavorite({ ...movie, isFavorite: !movie.isFavorite });
   };
 
   const viewAnimatedStyle = useAnimatedStyle(() => {
