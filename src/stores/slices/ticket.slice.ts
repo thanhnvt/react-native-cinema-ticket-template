@@ -13,6 +13,15 @@ const ticketSlice = createSlice({
   name: "tickets",
   initialState: defaultState,
   reducers: {
+    setTickets: (
+      state: TicketStates,
+      action: PayloadAction<any>
+    ): TicketStates => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
     addTicketSuccess: (
       state: TicketStates,
       action: PayloadAction<any>
@@ -27,5 +36,5 @@ const ticketSlice = createSlice({
   },
 });
 
-export const { addTicketSuccess } = ticketSlice.actions;
+export const { addTicketSuccess, setTickets } = ticketSlice.actions;
 export default ticketSlice.reducer;

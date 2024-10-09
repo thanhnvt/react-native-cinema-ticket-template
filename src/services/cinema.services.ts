@@ -8,6 +8,9 @@ import {
 } from "../types/CinemaTypes";
 
 class CommonService {
+  getTickets = async (): Promise<Array<CinemaPaymentRequestType>> => {
+    return [];
+  };
   getMovieShow = async (
     date: string,
     movieId: string,
@@ -17,6 +20,7 @@ class CommonService {
   ): Promise<Array<CinemaType>> => {
     return Cinemas;
   };
+
   getSeatsByMovieShowId = async (
     showTimeId: string
   ): Promise<CinemaSeatsType> => {
